@@ -18,7 +18,7 @@ ses_client = boto3.client('ses')
 
 def lambda_handler(event, context):
     # Specify the S3 bucket name
-    bucket_name = 'ttt-email-marketing'  # Replace with your bucket name
+    bucket_name = 'cwh-email-marketing'  # Replace with your bucket name
 
     try:
         # Retrieve the CSV file containing contacts from S3
@@ -41,7 +41,7 @@ def lambda_handler(event, context):
                 Source='you@yourdomainname.com',  # Replace with your verified "From" address
                 Destination={'ToAddresses': [contact['Email']]},
                 Message={
-                    'Subject': {'Data': 'Your Weekly Tiny Tales Mail!', 'Charset': 'UTF-8'},
+                    'Subject': {'Data': 'Your Weekly CloudWithHarry NewsLetter!', 'Charset': 'UTF-8'},
                     'Body': {'Html': {'Data': personalized_email, 'Charset': 'UTF-8'}}
                 }
             )
